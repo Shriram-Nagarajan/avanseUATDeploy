@@ -36,22 +36,21 @@ public class UserController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	
-	@GetMapping("/admin/password")
-	public String getUpdatePassword(Model model) {
-		model.addAttribute("userDTO", new UserDTO());
-		return "/update-password";
-	}
-	
-	@PostMapping("/admin/update-password/{id}")
-	public String postUpdatePassword(@PathVariable Long id, Model model) {
-		
-		User user = userRepository.getById(id);
-		
-		
-		
-		
-		return "/adminDashboard";
-	}
+	/*
+	 * @GetMapping("/admin/password") public String getUpdatePassword(Model model) {
+	 * model.addAttribute("userDTO", new UserDTO()); return "/update-password"; }
+	 * 
+	 * @PostMapping("/admin/update-password") public String postUpdatePassword(Model
+	 * model) { Long id = 1L; User user = userRepository.getById(id);
+	 * 
+	 * String password = userRepository.getById(id).getPassword();
+	 * 
+	 * user.setPassword(bCryptPasswordEncoder.encode(password));
+	 * 
+	 * userRepository.save(user);
+	 * 
+	 * return "redirect:/adminDashboard"; }
+	 */
 	
 	
 //	@RequestMapping("users")
