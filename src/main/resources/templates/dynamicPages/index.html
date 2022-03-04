@@ -8,10 +8,7 @@
 
 	<!-- Content Wrapper -->
 	<div layout:fragment="contentPlus">
-	
-	
-	
-	
+
 		<section class="home_avanse_banner_area">
 
 			<div class="container">
@@ -51,10 +48,8 @@
 			</div>
 		</section>
 		<section class="bg_grey_light sec_pad pb-0">
-
 			<div class="container">
 				<div class="row">
-
 					<div class="col-lg-12 col-sm-12">
 						<h2 class="f_size_40 f_500 t_color3 l_height45 text-center">
 							Let Your <span class="c_cyan">Dreams</span> Take Flight
@@ -78,7 +73,6 @@
 									id="studyinindia-tab" data-toggle="tab" href="#studyinindia"
 									role="tab" aria-controls="studyinindia" aria-selected="false">
 										Study in India</a></li>
-
 							</ul>
 							<div class="tab-content developer_tab_content">
 								<div class="tab-pane fade active show" id="studyabroad"
@@ -148,7 +142,6 @@
 										class="btn_six text-center slider_btn yello_btn mt-5">Apply
 										Now</a>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -156,7 +149,6 @@
 			</div>
 		</section>
 		<section class="sec_pad">
-
 			<div class="container">
 				<div class="sec_title  wow fadeInUp pb-5 text-center">
 					<h2 class="f_size_40 f_500 t_color3 l_height45">Avanse
@@ -170,7 +162,6 @@
 					</p>
 				</div>
 				<div class="row">
-
 					<div class="col-lg-4 mb-5 text-center ">
 						<div class=" home-offer-box py-5 pl-3 pr-3">
 							<img src="/viewPagesAssets/img/icon/e-tutoring-loans.png">
@@ -182,8 +173,6 @@
 								More <i class="ti-arrow-right"></i>
 							</a>
 						</div>
-
-
 					</div>
 					<div class="col-lg-4 mb-5 text-center ">
 						<div class=" home-offer-box py-5 pl-3 pr-3">
@@ -313,22 +302,23 @@
 									<div class="form-group ">
 										<div class="row">
 											<div class="col-11">
-												<select class="form-control" id="country_name" onchange="setCoursesAndUniversities()">
+												<select class="form-control" id="country_name"
+													onchange="setCoursesAndUniversities()">
 													<option value="">Select Country</option>
 													<option value="Australia">Australia</option>
 													<option value="Canada">Canada</option>
 													<option value="Germany">Germany</option>
-													<option value="New Zealand">New Zealand</option>	
+													<option value="New Zealand">New Zealand</option>
 													<option value="Singapore">Singapore</option>
 													<option value="United Kingdom">UK</option>
 													<option value="United States of America">USA</option>
 												</select>
 											</div>
-											
+
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="col-lg-4 py-5 lg-border-right">
 									<!-- <form action="#" class="contact_form_box " method="post" id="contactForm"> -->
 									<div class="form-group ">
@@ -343,11 +333,10 @@
 												</select>
 												<button onclick="onCourseSearchButtonClick()"
 													class="btn btn-submit search-button-home" type="submit">
-													GO
-												</button>
-												
+													GO</button>
+
 											</div>
-											
+
 										</div>
 
 
@@ -421,11 +410,10 @@
 												</select>
 												<button onclick="universitySearchClicked()"
 													class="btn btn-submit search-button-home" type="submit">
-													GO
-												</button>
-												
+													GO</button>
+
 											</div>
-											
+
 										</div>
 
 
@@ -601,7 +589,7 @@
 
 					<div th:each="testimonial, iStat : ${testimonials}">
 						<div class="item">
-							<div class="feedback_item">
+							<div class="feedback_item testimonials-box">
 								<div class="feed_back_author">
 									<div class="media">
 										<div class="img">
@@ -618,20 +606,24 @@
 									</div>
 
 								</div>
-								<p class="w_color" th:text="${testimonial.message}">After
-									submitting all my documents, my education loan was sanctioned
-									within two days. Thank you Avanse Financial Services for such
-									an amazing and prompt service.</p>
-								<a href="#" class="learn_btn_two text-white">Read More <i
-									class="ti-arrow-right"></i></a>
-								<div class="shap_one"></div>
-								<div class="shap_two"></div>
+
+								<div class="testim_info">
+									<p class="w_color" th:text="${testimonial.message}">After
+										submitting all my documents, my education loan was sanctioned
+										within two days. Thank you Avanse Financial Services for such
+										an amazing and prompt service.</p>
+									<a href="/testimonials" class="learn_btn_two text-white">Read
+										More <i class="ti-arrow-right"></i>
+									</a>
+									<div class="shap_one"></div>
+									<div class="shap_two"></div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="text-center">
-					<a href="testimonials.html"
+					<a href="/testimonials"
 						class="btn_six text-center slider_btn yello_btn mt-5">Know
 						More</a>
 				</div>
