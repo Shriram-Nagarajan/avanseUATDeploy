@@ -101,24 +101,22 @@ import lombok.AllArgsConstructor;
 @Controller
 public class AdminController {
 
-//	public static String imageUploadDir = System.getProperty("user.dir") + "\\src\\mainresources\\static\\images";
-	public static String universityUploadDir = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator +"static"+File.separator+"images"+File.separator+"universityImages";
+	public static String universityUploadDir = "."+File.separator+"static"+File.separator+"images"+File.separator+"universityImages";
 
-	public static String testimonialPersonUploadDir = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+"images"+File.separator+"testimonialImages";
+	public static String testimonialPersonUploadDir = "."+File.separator+"static"+File.separator+"images"+File.separator+"testimonialImages";
 
-	public static String newPageAddDir = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"templates"+File.separator+"addedPages";
-	public static String newPostAddDir = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"templates"+File.separator+"addedBlogPosts";
+	public static String newPageAddDir = "."+File.separator+"templates"+File.separator+"addedPages";
+	public static String newPostAddDir = "."+File.separator+"templates"+File.separator+"addedBlogPosts";
 
-	public static String newFeaturedImageAddDir = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"img"+File.separator+"userAddedFeaturedImages";
-	public static String newBannerImageAddDir = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"img"+File.separator+"userAddedBannerImages";
-	public static String globalHeaderFilePath =  System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+ "viewPagesAssets" +File.separator+"js"+File.separator+"customGlobalHeader"+File.separator+"globalHeader.js";
+	public static String newFeaturedImageAddDir = "."+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"img"+File.separator+"userAddedFeaturedImages";
+	public static String newBannerImageAddDir = "."+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"img"+File.separator+"userAddedBannerImages";
+	public static String globalHeaderFilePath =  "."+File.separator+"static"+File.separator+ "viewPagesAssets" +File.separator+"js"+File.separator+"customGlobalHeader"+File.separator+"globalHeader.js";
 
-	public static String userAddedImagesDir = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+"images"+File.separator+"userAddedImages";
-	public static String userAddedImagesJustPath = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+"images"+File.separator+"userAddedImages";
+	public static String userAddedImagesDir = "."+File.separator+"static"+File.separator+"images"+File.separator+"userAddedImages";
+	public static String userAddedImagesJustPath = File.separator+"images"+File.separator+"userAddedImages";
 
-	public static String cssCodeFileDir = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"css";
-	public static String jsCodeFileDir =System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"js";
-
+	public static String cssCodeFileDir = "."+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"css";
+	public static String jsCodeFileDir ="."+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"js";
 	public static String currentProtocol = "http://";
 
 	@Autowired
@@ -484,13 +482,17 @@ public class AdminController {
 	 */
 
 	public void deleteImageFromStaticFolder(@PathVariable long id) {
+
 		University universityImageToBeDeleted = universityService.getUniversityById(id).get();
 //		UniversityDTO universityDTO = new UniversityDTO();
+
 		String myFile = universityImageToBeDeleted.getImageName();
+
 		/*
 		 * Give the exact path where the file is located followed by a slash and then
 		 * use the service method of get University by ID
 		 */
+
 		File file = new File(universityUploadDir + File.separator + myFile);
 //		System.out.println(file.getAbsolutePath());
 
