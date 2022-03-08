@@ -101,9 +101,7 @@ import lombok.AllArgsConstructor;
 @Controller
 public class AdminController {
 
-
 	public static String universityUploadDir = "."+File.separator+"static"+File.separator+"images"+File.separator+"universityImages";
-
 	public static String testimonialPersonUploadDir = "."+File.separator+"static"+File.separator+"images"+File.separator+"testimonialImages";
 
 	public static String newPageAddDir = "."+File.separator+"templates"+File.separator+"addedPages";
@@ -117,7 +115,8 @@ public class AdminController {
 	public static String userAddedImagesJustPath = File.separator+"images"+File.separator+"userAddedImages";
 
 	public static String cssCodeFileDir = "."+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"css";
-	public static String jsCodeFileDir = "."+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"js";
+	public static String jsCodeFileDir ="."+File.separator+"static"+File.separator+"viewPagesAssets"+File.separator+"js";
+	
 	public static String currentProtocol = "http://";
 
 	@Autowired
@@ -1532,8 +1531,6 @@ public class AdminController {
 				Path fileNameAndPath = Paths.get(newFeaturedImageAddDir, featuredImageFile.getOriginalFilename());
 				Files.write(fileNameAndPath, featuredImageFile.getBytes());
 				
-				
-
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.out.println(e.getMessage());
