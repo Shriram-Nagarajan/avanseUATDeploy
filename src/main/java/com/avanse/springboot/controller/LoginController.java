@@ -48,7 +48,7 @@ public class LoginController {
 		role.setName("ROLE_ADMIN");
 		roleRepository.save(role);
 		
-		User user = new User(null,"Harish","Kumar","admin@avanse.com", bCryptPasswordEncoder.encode("avanse@123"), "22 March 2000","Single", "Male", "9812312312","Delhi",List.of(role));
+		User user = new User(null,"Harish","Kumar","admin@avanse.com", bCryptPasswordEncoder.encode("avanse@123##"), "22 March 2000","Single", "Male", "9812312312","Delhi",List.of(role));
 
 		userRepository.save(user);
 		

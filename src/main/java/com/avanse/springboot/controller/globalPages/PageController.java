@@ -101,9 +101,21 @@ public class PageController {
 	public String jobApplyPage() {
 		return "dynamicPages/career";
 	}
-	@GetMapping("/education-loan/eligibility-calculator1")
+	@GetMapping("/education-loan/eligibility-calculator")
 	public String educationLoanEligibilityCalculatorPage() {
 		return "dynamicPages/calculatorPages/education-loan-eligibility-calculator";
+	}
+	@GetMapping("/education-loan/emi-calculator")
+	public String educationLoanEMICalculatorPage() {
+		return "dynamicPages/calculatorPages/education-loan-emi-calculator";
+	}
+	@GetMapping("/education-loan/education-loan-repayment-calculator")
+	public String educationLoanRepaymentCalculatorPage() {
+		return "dynamicPages/calculatorPages/education-loan-repayment-calculator";
+	}
+	@GetMapping("/education-loan/college-expense-calculator")
+	public String collegeExpenseCalculatorPage() {
+		return "dynamicPages/calculatorPages/college-expense-calculator";
 	}
 	
 	@GetMapping("/about")
@@ -184,8 +196,7 @@ public class PageController {
 	  public ModelAndView getApplyNowForm(Model model) {
 	  ModelAndView modelAndView = new ModelAndView("dynamicPages/apply-now");
 	  model.addAttribute("applyNowGeneralDTO", new ApplyNowGeneralDTO()); 
-		model.addAttribute("awards", awardService.getAllAwards() );
-
+	  model.addAttribute("awards", awardService.getAllAwards() );
 	  return modelAndView;  
 	  }
 	 
@@ -194,7 +205,6 @@ public class PageController {
 		ModelAndView modelAndView =  new ModelAndView("dynamicPages/education-institution-loan");
 		model.addAttribute("educationInstitutionLoanDTO", new EducationInstitutionLoanDTO());
 		model.addAttribute("awards", awardService.getAllAwards() );
-
 		return modelAndView;	
 	}
 	
@@ -202,9 +212,7 @@ public class PageController {
 	public ModelAndView getExecutiveEducationLoan(Model model) {
 		ModelAndView modelAndView = new ModelAndView("dynamicPages/executive-education-loan");
 		model.addAttribute("executiveEducationLoanDTO", new ExecutiveEducationLoanDTO());
-
 		model.addAttribute("awards", awardService.getAllAwards() );
-
 		return modelAndView;
 	}
 	
@@ -230,17 +238,15 @@ public class PageController {
 	public ModelAndView getSchoolFeeFinancingPage(Model model) {
 		ModelAndView modelAndView = new ModelAndView("dynamicPages/apply-for-school-fee-financing");
 		model.addAttribute("schoolFeeFinancingDTO", new SchoolFeeFinancingDTO());
-		model.addAttribute("awards", awardService.getAllAwards() );
-
+		model.addAttribute("awards", awardService.getAllAwards());
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/apply-for-skill-enhancement")
 	public ModelAndView getApplyForSkillEnhancementPage(Model model) {
 		ModelAndView modelAndView = new ModelAndView("dynamicPages/apply-for-skill-enhancement");
 		model.addAttribute("skillEnhancementDTO", new SkillEnhancementDTO());
-		model.addAttribute("awards", awardService.getAllAwards() );
-
+		model.addAttribute("awards", awardService.getAllAwards());
 		return modelAndView;
 	}
 	
