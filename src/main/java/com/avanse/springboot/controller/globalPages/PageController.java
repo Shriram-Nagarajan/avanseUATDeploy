@@ -4,6 +4,7 @@
 */
 
 package com.avanse.springboot.controller.globalPages;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.avanse.springboot.DTO.SearchResultDTO;
 import com.avanse.springboot.DTO.forms.applyNow.ApplyNowGeneralDTO;
 import com.avanse.springboot.DTO.forms.applyNow.ETutoringDTO;
 import com.avanse.springboot.DTO.forms.applyNow.EducationInstitutionLoanDTO;
@@ -27,8 +31,10 @@ import com.avanse.springboot.DTO.forms.contactUs.InvestorDTO;
 import com.avanse.springboot.DTO.forms.contactUs.MediaDTO;
 import com.avanse.springboot.DTO.forms.miscellaneous.AssociateWithUsDTO;
 import com.avanse.springboot.DTO.forms.miscellaneous.CSRLeadsDTO;
+import com.avanse.springboot.DTO.forms.miscellaneous.CrossSellDTO;
 import com.avanse.springboot.DTO.forms.miscellaneous.ENachDTO;
 import com.avanse.springboot.DTO.forms.miscellaneous.MoratoriumDeregisterDTO;
+import com.avanse.springboot.DTO.forms.miscellaneous.MoratoriumEILDTO;
 import com.avanse.springboot.DTO.forms.miscellaneous.MoratoriumFacilityDTO;
 import com.avanse.springboot.DTO.forms.miscellaneous.RestructuringOfLoansDTO;
 import com.avanse.springboot.model.Page;
@@ -39,6 +45,7 @@ import com.avanse.springboot.service.CourseService;
 import com.avanse.springboot.service.PageService;
 import com.avanse.springboot.service.PostCategoryService;
 import com.avanse.springboot.service.PostService;
+import com.avanse.springboot.service.SearchService;
 import com.avanse.springboot.service.TestimonialService;
 import com.avanse.springboot.service.UniversityService;
 
@@ -67,6 +74,9 @@ public class PageController {
 	@Autowired
 	TestimonialService testimonialService;
 	
+	@Autowired
+	SearchService searchService;
+	
 	
 	@GetMapping(value={"/index","/"})
 	public String homePage(Model model) {
@@ -78,42 +88,60 @@ public class PageController {
 	public String studyAbroadPage(Model model) {
 		return "dynamicPages/study-abroad";
 	}
-	@GetMapping(value={"/education-loan/study-india-loan"})
+	@GetMapping(value={"/education-loan/study-in-india"})
 	public String studyInIndiaPage(Model model) {
 		model.addAttribute("testimonials", testimonialService.getAllTestimonials());
-
 		return "dynamicPages/study-in-india";
 	}
 	
 	@GetMapping(value={"/education-loan-for-mba"})
 	public String educationLoanForMbaPage(Model model) {
 		model.addAttribute("testimonials", testimonialService.getAllTestimonials());
-		
 		return "dynamicPages/education-loan-for-mba";
 	}
 	
+
+	@GetMapping("/search")
+	public String searchPage() {
+		return "dynamicPages/search";
+	}
+	@GetMapping("/country")
+	public String countryPage() {
+		return "dynamicPages/country";
+	}
+	
+	@PostMapping(value = "/globalSearch/{searchKey}")
+	@ResponseBody
+	public List<SearchResultDTO> globalSearchAPI(@PathVariable String searchKey){
+		return searchService.getGlobalSearchResults(searchKey);
+	}
 
 	@GetMapping("/about-avanse/career")
 	public String careerPage() {
 		return "dynamicPages/career";
 	}
-	@GetMapping("/career/apply")
+	@GetMapping("/about-avanse/career/jobsearch")
 	public String jobApplyPage() {
-		return "dynamicPages/career";
+		return "dynamicPages/jobsearch";
 	}
-	@GetMapping("/education-loan/eligibility-calculator")
+	@GetMapping("/about-avanse/career/jobdetails")
+	public String jobDetailsPage() {
+		return "dynamicPages/jobdetails";
+	}
+	
+	@GetMapping("/education-loan-calculators/eligibility-calculator")
 	public String educationLoanEligibilityCalculatorPage() {
 		return "dynamicPages/calculatorPages/education-loan-eligibility-calculator";
 	}
-	@GetMapping("/education-loan/emi-calculator")
+	@GetMapping("/education-loan-calculators/emi-calculator")
 	public String educationLoanEMICalculatorPage() {
 		return "dynamicPages/calculatorPages/education-loan-emi-calculator";
 	}
-	@GetMapping("/education-loan/education-loan-repayment-calculator")
+	@GetMapping("/education-loan-calculators/repayment-calculator")
 	public String educationLoanRepaymentCalculatorPage() {
 		return "dynamicPages/calculatorPages/education-loan-repayment-calculator";
 	}
-	@GetMapping("/education-loan/college-expense-calculator")
+	@GetMapping("/education-loan-calculators/college-expense-calculators")
 	public String collegeExpenseCalculatorPage() {
 		return "dynamicPages/calculatorPages/college-expense-calculator";
 	}
@@ -291,6 +319,24 @@ public class PageController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/cross-sell")
+	public ModelAndView crossSellPage(Model model) {
+		ModelAndView modelAndView = new ModelAndView("dynamicPages/cross-sell");
+		model.addAttribute("crossSellDTO", new CrossSellDTO());
+		return modelAndView;
+	}
+	@GetMapping("/moratorium-eil")
+	public ModelAndView moratoriumEILPage(Model model) {
+		ModelAndView modelAndView = new ModelAndView("dynamicPages/moratorium-eil");
+		model.addAttribute("moratoriumEILDTO", new MoratoriumEILDTO());
+		return modelAndView;
+	}
+	
+	@GetMapping("/unsubscribe")
+	public String getUnsubscribePage() {
+		return "dynamicPages/unsubscribe";
+	}
+
 	/*
 	 * Page for all forms
 	*/
