@@ -204,12 +204,12 @@ public class AdminController {
 		Long noOfCourses = courseService.numberOfCourses();
 		Long noOfPages = pageService.numberOfPages();
 		Long noOfPosts = postService.numberOfPosts();
-		System.out.println("Number of University is " + noOfUniversities);
+//		//System.out.println("Number of University is " + noOfUniversities);
 		model.addAttribute("numOfUniversities", noOfUniversities);
 		model.addAttribute("numOfCourses", noOfCourses);
 		model.addAttribute("numOfPages", noOfPages);
 		model.addAttribute("numOfPosts", noOfPosts);
-		System.out.println("User Added Image Directory is " + userAddedImagesDir);
+//		//System.out.println("User Added Image Directory is " + userAddedImagesDir);
 		return "adminDashboard";
 
 	}
@@ -235,10 +235,10 @@ public class AdminController {
 		org.springframework.data.domain.Page<Award> page = awardService.listAwardsByPage(pageNum);
 
 		List<Award> awards = page.getContent();
-
-		System.out.println("PageNum =" + pageNum);
-		System.out.println("Total elements= " + page.getNumberOfElements());
-		System.out.println("Total Pages= " + page.getTotalPages());
+//
+//		//System.out.println("PageNum =" + pageNum);
+//		//System.out.println("Total elements= " + page.getNumberOfElements());
+//		//System.out.println("Total Pages= " + page.getTotalPages());
 
 		long startCount = (pageNum - 1) * awardService.AWARDS_PER_PAGE + 1;
 		long endCount = startCount + awardService.AWARDS_PER_PAGE - 1;
@@ -283,7 +283,7 @@ public class AdminController {
 		}
 
 		else {
-			System.out.println("Cannot Delete the object, Later to be displayed over the page");
+//			//System.out.println("Cannot Delete the object, Later to be displayed over the page");
 		}
 		return "redirect:/admin/awards";
 	}
@@ -478,7 +478,7 @@ public class AdminController {
 		}
 
 		else {
-			System.out.println("Cannot Delete the object, Later to be displayed over the page");
+			//System.out.println("Cannot Delete the object, Later to be displayed over the page");
 		}
 
 		return "redirect:/admin/universities";
@@ -498,7 +498,7 @@ public class AdminController {
 		 * use the service method of get University by ID
 		 */
 		File file = new File(universityUploadDir + File.separator + myFile);
-//		System.out.println(file.getAbsolutePath());
+//		//System.out.println(file.getAbsolutePath());
 
 		/*
 		 * Check if the file exist before deleting and after deleting
@@ -543,7 +543,7 @@ public class AdminController {
 	@ResponseBody
 	@CrossOrigin("*")
 	public String activateDeactivateUniversity(@PathVariable(name = "id") long id, @PathVariable String action) {
-		System.out.println("Requested for University action = " + action + " for University id= " + id);
+		//System.out.println("Requested for University action = " + action + " for University id= " + id);
 		if (action.equals("ActivateUniversity")) {
 			University university = universityService.getUniversityById(id).get();
 			university.setIsUniversityActive(true);
@@ -591,7 +591,7 @@ public class AdminController {
 		University university = new University();
 		model.addAttribute("university", university);
 		List<University> universities = universityService.getAllUniversity();
-		System.out.println(universities.toString());
+		//System.out.println(universities.toString());
 		model.addAttribute("universities", universities);
 
 		/*
@@ -690,7 +690,7 @@ public class AdminController {
 //		university.addTheCourse(course);
 		course.setUniversity(universityService.getUniversityById(university_id).get());
 		courseService.addCourse(course);
-		System.out.println(course.toString());
+		//System.out.println(course.toString());
 		return "redirect:/admin/courses";
 	}
 
@@ -706,14 +706,14 @@ public class AdminController {
 			int index = -1;
 			for(int i=0;i<courses.size();i++) {
 				if(courses.get(i).getId() == id) {
-					System.out.println("TESTING .................Index Found - " + i);
+					//System.out.println("TESTING .................Index Found - " + i);
 					index = i;
 				}
 			}
 			if(index != -1) {
 				courses.remove(index);
-				System.out.println("TESTING .................saving university " + university);
-				System.out.println("Courses..............."+university.getCourses());
+				//System.out.println("TESTING .................saving university " + university);
+				//System.out.println("Courses..............."+university.getCourses());
 				universityService.addUniversity(university);
 				courseService.deleteCourse(id);
 			}
@@ -757,7 +757,7 @@ public class AdminController {
 		University university = new University();
 		model.addAttribute("university", university);
 		List<University> universities = universityService.getAllUniversity();
-		System.out.println(universities.toString());
+		//System.out.println(universities.toString());
 		model.addAttribute("universities", universities);
 
 		/*
@@ -774,7 +774,7 @@ public class AdminController {
 	@ResponseBody
 	@CrossOrigin("*")
 	public String activateDeactivateCourse(@PathVariable(name = "id") long id, @PathVariable String action) {
-		System.out.println("Requested for Course action = " + action + " for Course id= " + id);
+		//System.out.println("Requested for Course action = " + action + " for Course id= " + id);
 		if (action.equals("ActivateCourse")) {
 			Course course = courseService.getCourseById(id).get();
 			course.setIsCourseActive(true);
@@ -806,7 +806,7 @@ public class AdminController {
 	@CrossOrigin("*")
 	public String postImages(@RequestParam(name = "imageList") MultipartFile[] imageList) throws InterruptedException {
 
-		System.out.println("Length -    " + imageList.length); // This Upload will work only if this statement is
+		//System.out.println("Length -    " + imageList.length); // This Upload will work only if this statement is
 																// present
 		for (MultipartFile mFile : imageList) {
 			try {
@@ -856,7 +856,7 @@ public class AdminController {
 	 * model.addAttribute("imageDTO", new ImageDTO());
 	 * 
 	 * Image image = new Image(); model.addAttribute("image", image); List<Image>
-	 * images = imageService.getAllImages(); System.out.println(images.toString());
+	 * images = imageService.getAllImages(); //System.out.println(images.toString());
 	 * model.addAttribute("images", images);
 	 * 
 	 * return "imagesAdd"; }
@@ -873,7 +873,7 @@ public class AdminController {
 		}
 
 		else {
-			System.out.println("Cannot Delete the object, Later to be displayed over the page");
+			//System.out.println("Cannot Delete the object, Later to be displayed over the page");
 
 		}
 
@@ -1011,7 +1011,7 @@ public class AdminController {
 		}
 
 		else {
-			System.out.println("Cannot delete the job");
+			//System.out.println("Cannot delete the job");
 		}
 		return "redirect:/admin/jobs";
 
@@ -1045,7 +1045,7 @@ public class AdminController {
 	@ResponseBody
 	@CrossOrigin("*")
 	public String activateDeactivateJob(@PathVariable(name = "id") long id, @PathVariable String action) {
-		System.out.println("Requested for Job action = " + action + " for Job id= " + id);
+		//System.out.println("Requested for Job action = " + action + " for Job id= " + id);
 		Job job = jobService.getJobById(id).get();
 
 		if (action.equals("ActivateJob")) {
@@ -1175,7 +1175,7 @@ public class AdminController {
 		if (bannerImageFile != null && !bannerImageFile.isEmpty()) {
 			try {
 				/*
-				 * System.out.println("Testing------------>" + newBannerImageAddDir +
+				 * //System.out.println("Testing------------>" + newBannerImageAddDir +
 				 * File.separator + bannerImageFile.getOriginalFilename());
 				 */
 //				File myBannerImageFile = new File(newBannerImageAddDir + File.separator + bannerImageFile.getOriginalFilename());
@@ -1192,11 +1192,11 @@ public class AdminController {
 		}
 
 		if (pageDTO.getId() == null) {
-			System.out.println("New Page is Being created..............");
+			//System.out.println("New Page is Being created..............");
 			page = new Page();
 			page.setDateOfCreation(new Date());
 		} else {
-			System.out.println("Update Page Operation happening..................");
+			//System.out.println("Update Page Operation happening..................");
 			page = pageService.getPageById(pageDTO.getId()).get();
 			if (page.getBannerImageName() != null)
 				pageDTO.setBannerImageName(page.getBannerImageName());
@@ -1214,7 +1214,7 @@ public class AdminController {
 			pageDTO.setBannerImageName(page.getBannerImageName());
 		}
 //		else if(bannerImageFile == null && pageUpdateCheck != null && pageUpdateCheck.equals("true")) {
-//			System.out.println("Check 2 ----------------------------------------->");
+//			//System.out.println("Check 2 ----------------------------------------->");
 //			page.setBannerImageName(pageService.getPageById(pageDTO.getId()).get().getBannerImageName());
 //		}
 		page.setBannerImageAlt(pageDTO.getBannerImageAlt());
@@ -1240,7 +1240,7 @@ public class AdminController {
 
 		preProcessFileName = preProcessFileName.strip();
 
-		System.out.println("The Pre Process of file name " + preProcessFileName);
+		//System.out.println("The Pre Process of file name " + preProcessFileName);
 
 		/*
 		 * String preProcessFileName = postDTO.getPostTitle().toLowerCase().strip();
@@ -1251,7 +1251,7 @@ public class AdminController {
 		 * 
 		 * preProcessFileName = preProcessFileName.strip();
 		 * 
-		 * System.out.println("The Pre Process of file name " + preProcessFileName);
+		 * //System.out.println("The Pre Process of file name " + preProcessFileName);
 		 * 
 		 * String htmlFileName = preProcessFileName.replaceAll(" ", "-");
 		 */
@@ -1292,7 +1292,7 @@ public class AdminController {
 		}
 
 		String hostName = request.getHeader("host");
-		System.out.println(hostName);
+		//System.out.println(hostName);
 
 		pagesLink = hostName + "/addedPages/";
 		String currentPageLink = pagesLink + htmlFileName;
@@ -1301,7 +1301,7 @@ public class AdminController {
 		 * Write a code to create a page link.
 		 */
 
-		System.out.println(pagesLink);
+		//System.out.println(pagesLink);
 
 		/*
 		 * Now save the file name in the database so as to access the file in the future
@@ -1334,21 +1334,21 @@ public class AdminController {
 		 * the page...
 		 */
 
-		System.out.println("\n\n\n\n\n\n Main Section preview" + pageDTO.getMainSection());
+		//System.out.println("\n\n\n\n\n\n Main Section preview" + pageDTO.getMainSection());
 		String codeInFile;
 		if (pageDTO.getEnableHeader() != null && pageDTO.getEnableHeader().equals("true")) {
 			codeInFile = htmlBoilerPlate(pageDTO.getMetaTitle(), pageDTO.getMetaKeyword(), pageDTO.getBannerHeading(),
 					pageDTO.getBannerSubHeading(), pageDTO.getMetaDescription(), pageDTO.getMainSection(),
 					pageDTO.getJsCode(), pageDTO.getCssCode(), pageDTO.getBannerImageName(),
 					pageDTO.getBannerImageAlt());
-			System.out.println("The following code will be there in the file " + codeInFile);
+			//System.out.println("The following code will be there in the file " + codeInFile);
 			pageDTO.setConsolidatedHTMLCode(codeInFile);
 			page.setConsolidatedHTMLCode(pageDTO.getConsolidatedHTMLCode());
 		} else {
 
 			codeInFile = htmlBoilerPlateWithoutHeader(pageDTO.getMetaTitle(), pageDTO.getMetaKeyword(),
 					pageDTO.getMetaDescription(), pageDTO.getMainSection(), pageDTO.getJsCode(), pageDTO.getCssCode());
-			System.out.println("The following code will be there in the file " + codeInFile);
+			//System.out.println("The following code will be there in the file " + codeInFile);
 			pageDTO.setConsolidatedHTMLCode(codeInFile);
 			page.setConsolidatedHTMLCode(pageDTO.getConsolidatedHTMLCode());
 		}
@@ -1360,10 +1360,10 @@ public class AdminController {
 		}
 
 		page.setLastModified(pageDTO.getLastModified());
-		System.out.println("page Added sucessfully" + codeInFile);
+		//System.out.println("page Added sucessfully" + codeInFile);
 		pageService.addPage(page);
 //		String pageToReturn = "redirect:/viewPages/"+htmlFileName;
-		System.out.println(page.toString());
+		//System.out.println(page.toString());
 		return "redirect:/admin/pages";
 
 	}
@@ -1449,7 +1449,7 @@ public class AdminController {
 			deleteHtmlFileFromServer(id, type);
 			pageService.removePageById(id);
 		} else {
-			System.out.println("Cannot delete the page");
+			//System.out.println("Cannot delete the page");
 		}
 		return "redirect:/admin/pages";
 	}
@@ -1521,7 +1521,7 @@ public class AdminController {
 	@ResponseBody
 	@CrossOrigin("*")
 	public String activateDeactivatePage(@PathVariable(name = "id") long id, @PathVariable String action) {
-		System.out.println("Requested for Page action = " + action + " for Page id= " + id);
+		//System.out.println("Requested for Page action = " + action + " for Page id= " + id);
 		Page page = pageService.getPageById(id).get();
 
 		if (action.equals("ActivatePage")) {
@@ -1553,14 +1553,14 @@ public class AdminController {
 	public String globalHeaderAddPost(@RequestParam("globalHeaderCode") String globalHeaderCode) {
 
 		File globalHeaderFile = new File(globalHeaderFilePath);
-		System.out.println("InputCode----->" + globalHeaderCode);
+		//System.out.println("InputCode----->" + globalHeaderCode);
 
 		try {
 			FileWriter fwr = new FileWriter(globalHeaderFile);
 			fwr.write(globalHeaderCode);
 			fwr.close();
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		return "redirect:/admin/globalHeader";
@@ -1623,7 +1623,7 @@ public class AdminController {
 
 		Date date = new Date();
 		String tempDate = new SimpleDateFormat("dd MMMM, yyyy").format(date);
-//		System.out.println("TESTING ------------> " + isUpdating);
+//		//System.out.println("TESTING ------------> " + isUpdating);
 		post.setId(postDTO.getId());
 		post.setPostTitle(postDTO.getPostTitle().strip());
 		post.setHeading(postDTO.getHeading());
@@ -1634,7 +1634,7 @@ public class AdminController {
 			postDTO.setFeaturedImageName(post.getFeaturedImageName());
 		}
 //		else if (isUpdating != null) {
-//			System.out.println(
+//			//System.out.println(
 //					"Image test edit ---> " + postService.getPostById(postDTO.getId()).get().getFeaturedImageName()
 //							+ "PostDTO id = " + postDTO.getId());
 //			post.setFeaturedImageName(postService.getPostById(postDTO.getId()).get().getFeaturedImageName());
@@ -1661,7 +1661,7 @@ public class AdminController {
 
 		preProcessFileName = preProcessFileName.strip();
 
-		System.out.println("The Pre Process of file name " + preProcessFileName);
+		//System.out.println("The Pre Process of file name " + preProcessFileName);
 
 		String htmlFileName = preProcessFileName.replaceAll(" ", "-");
 
@@ -1749,7 +1749,7 @@ public class AdminController {
 		}
 
 //////		String hostName = request.getHeader("host");
-////		System.out.println(hostName);
+////		//System.out.println(hostName);
 ////		
 ////		String postLink = hostName + "/addedPages/";
 //		String currentPageLink = postLink + htmlFileName;
@@ -1757,7 +1757,7 @@ public class AdminController {
 		/*
 		 * Write a code to create a page link.
 		 */
-//		System.out.println(postLink);
+//		//System.out.println(postLink);
 
 		/*
 		 * Now save the file name in the database so as to access the file in the future
@@ -1783,11 +1783,11 @@ public class AdminController {
 		 * the page...
 		 */
 
-		System.out.println("\n\n\n\n\n\n Main Section preview" + postDTO.getMainSection());
+		//System.out.println("\n\n\n\n\n\n Main Section preview" + postDTO.getMainSection());
 
 		String codeInFile = htmlBlogLayout(postDTO.getMetaTitle(), postDTO.getHeading(), postDTO.getSubHeading(),
 				postDTO.getMetaDescription(), postDTO.getMainSection(), postDTO.getFeaturedImageName());
-		System.out.println("The following code will be there in the blog file " + codeInFile);
+		//System.out.println("The following code will be there in the blog file " + codeInFile);
 		postDTO.setConsolidatedHTMLCode(codeInFile);
 		post.setConsolidatedHTMLCode(postDTO.getConsolidatedHTMLCode());
 
@@ -1798,10 +1798,10 @@ public class AdminController {
 		}
 
 //		post.setLastModified(postDTO.getLastModified());
-		System.out.println("page Added sucessfully" + codeInFile);
+		//System.out.println("page Added sucessfully" + codeInFile);
 		postService.addPost(post);
 //		String pageToReturn = "redirect:/viewPages/"+htmlFileName;
-		System.out.println(post.toString());
+		//System.out.println(post.toString());
 		return "redirect:/admin/posts";
 
 	}
@@ -2008,7 +2008,7 @@ public class AdminController {
 		}
 
 		else {
-			System.out.println("Cannot delete the page");
+			//System.out.println("Cannot delete the page");
 		}
 		return "redirect:/admin/posts";
 
@@ -2049,7 +2049,7 @@ public class AdminController {
 	@ResponseBody
 	@CrossOrigin("*")
 	public String activateDeactivatePost(@PathVariable(name = "id") long id, @PathVariable String action) {
-		System.out.println("Requested for Post action = " + action + " for Post id= " + id);
+		//System.out.println("Requested for Post action = " + action + " for Post id= " + id);
 		if (action.equals("ActivatePost")) {
 			Post post = postService.getPostById(id).get();
 			post.setIsPostActive(true);
@@ -2134,9 +2134,9 @@ public class AdminController {
 
 		List<Testimonial> testimonials = page.getContent();
 
-		System.out.println("PageNum =" + pageNum);
-		System.out.println("Total elements= " + page.getNumberOfElements());
-		System.out.println("Total Pages= " + page.getTotalPages());
+		//System.out.println("PageNum =" + pageNum);
+		//System.out.println("Total elements= " + page.getNumberOfElements());
+		//System.out.println("Total Pages= " + page.getTotalPages());
 
 		long startCount = (pageNum - 1) * testimonialService.TESTIMONIALS_PER_PAGE + 1;
 		long endCount = startCount + testimonialService.TESTIMONIALS_PER_PAGE - 1;
@@ -2250,7 +2250,7 @@ public class AdminController {
 		}
 
 		else {
-			System.out.println("Cannot Delete the object, Later to be displayed over the page");
+			//System.out.println("Cannot Delete the object, Later to be displayed over the page");
 
 		}
 
@@ -2273,7 +2273,7 @@ public class AdminController {
 		 */
 
 		File file = new File(testimonialPersonUploadDir + File.separator + myFile);
-//		System.out.println(file.getAbsolutePath());
+//		//System.out.println(file.getAbsolutePath());
 
 		/*
 		 * Check if the file exist before deleting and after deleting
